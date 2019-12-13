@@ -1,0 +1,12 @@
+import requests
+import re
+from bs4 import BeautifulSoup
+
+url = 'https://www.espn.com/nhl/teams'
+reqs = requests.get(url)
+soup = BeautifulSoup(reqs.text, 'lxml')
+divtag = soup.findAll("div", {"class": "mt3"})
+
+for link in divtag:
+  name = link.find('h2')
+  print(name.get_text('di'))  
